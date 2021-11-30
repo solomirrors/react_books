@@ -1,12 +1,19 @@
 const initialState = {
-    books: []
+    books: [],
+    loading: true
 };
 
 const reducers = (state = initialState, {payload, type}) => {
     switch (type) {
+        case 'BOOKS_REQUESTED':
+            return {
+                books: [],
+                loading: false
+            }
         case 'BOOKS_LOADED':
             return {
-                books: payload
+                books: payload,
+                loading: false
             };
 
         default:

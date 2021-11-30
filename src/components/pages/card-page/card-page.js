@@ -7,6 +7,7 @@ class CardPage extends Component {
             <Container fluid>
                 <h1 style={{color: '#fff'}} className='text-center'>Shopping list</h1>
                 <table className='w-100' style={{backgroundColor: '#fff', borderRadius: '10px 10px 10px 10px'}}>
+                    <thead>
                     <tr>
                         <th><h1 style={{color: '#000', textAlign: 'center'}}>#</h1></th>
                         <th><h1 style={{color: '#000', textAlign: 'center'}}>Books</h1></th>
@@ -24,10 +25,9 @@ class CardPage extends Component {
                         <th className='d-flex justify-content-center'>
                             <i className="mx-2 fas fa-plus"/>
                             <i className="mx-2 fas fa-minus"/>
-
-
                         </th>
                     </tr>
+                    </thead>
                 </table>
             </Container>
         )
