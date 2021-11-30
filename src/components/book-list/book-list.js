@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import BookListItem from "../book-list-item";
 import {connect} from "react-redux";
 import withContextBook from "../hoc";
-import {booksLoaded, booksRequested, booksError} from "../../actions";
+import {fetchBooks} from "../../actions";
 import {compose} from "redux";
 import {Col, Row} from "react-bootstrap";
 import './book-list.css'
@@ -43,15 +43,9 @@ const mapStateToProps = ({books, loading, error}) => {
     return {books, loading, error}
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    const {bookService} = ownProps;
+const mapDispatchToProps = (dispatch, {bookService}) => {
     return {
-        fetchBooks: () => {
-            dispatch(booksRequested());
-            bookService.getBooks()
-                .then((data) => dispatch(booksLoaded(data)))
-                .catch((err) => dispatch(booksError(err)));
-        }
+        fetchBooks: fetchBooks(bookService, dispatch)
     }
 }
 
