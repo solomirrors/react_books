@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ErrorBoundry from "./components/errors/error-boundry";
 import BookService from "./services/book-service";
 import {ContextBookProvider} from "./components/context/context-book";
@@ -13,11 +12,7 @@ ReactDOM.render(
   <Provider store={store}>
       <ErrorBoundry>
           <ContextBookProvider value={bookService}>
-              <BrowserRouter>
-                  <Routes>
-                      <Route path="/" element={<App/>}/>
-                  </Routes>
-              </BrowserRouter>
+              <App/>
           </ContextBookProvider>
       </ErrorBoundry>
   </Provider>,
