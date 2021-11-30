@@ -1,7 +1,6 @@
-import React, {Fragment} from "react";
-import BookList from "../../book-list";
+import React from "react";
 import './home-page.css'
-import {Col, Container, Row} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import BookListContainer from "../../../containers/book-list-container";
 
 const HomePage = () => {
