@@ -17,11 +17,11 @@ class BookList extends Component{
     render() {
         const {books} = this.props;
         return(
-            <Row className='d-flex align-items-baseline'>
+            <Row className='d-flex justify-content-around'>
                 {
                     books.map((book) => {
                         return(
-                            <Col className='book-list-storage col-auto' key={book.id}><BookListItem book={book}/></Col>
+                            <Col className='my-2 book-list-storage col-auto' key={book.id}><BookListItem book={book}/></Col>
                         )
                     })
                 }
