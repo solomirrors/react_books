@@ -6,6 +6,7 @@ import BookService from "./services/book-service";
 import {ContextBookProvider} from "./components/context/context-book";
 import store from "./store";
 import App from "./components/app";
+import './index.css'
 const bookService = new BookService();
 
 ReactDOM.render(
