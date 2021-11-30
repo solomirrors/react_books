@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import withContextBook from "../hoc";
 import {booksLoaded} from "../../actions";
 import {compose} from "redux";
+import {Col, Row} from "react-bootstrap";
+import './book-list.css'
 
 class BookList extends Component{
     componentDidMount() {
@@ -15,15 +17,15 @@ class BookList extends Component{
     render() {
         const {books} = this.props;
         return(
-            <ul>
+            <Row className='d-flex align-items-baseline'>
                 {
                     books.map((book) => {
                         return(
-                            <li key={book.id}><BookListItem book={book}/></li>
+                            <Col className='book-list-storage col-auto' key={book.id}><BookListItem book={book}/></Col>
                         )
                     })
                 }
-            </ul>
+            </Row>
         )
     }
 }
