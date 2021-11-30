@@ -18,4 +18,4 @@ const withContextBook = () => (Wrapped) => {
   }
 };
 
-export default withContextBook();
+export default withContextBook;
