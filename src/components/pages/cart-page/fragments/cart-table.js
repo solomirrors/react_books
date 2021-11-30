@@ -1,26 +1,26 @@
 import React, {Fragment} from "react";
+import {connect} from "react-redux";
 
-const CartTable = ({items, bookInTotal, onIncrease, onDecrease, onDelete}) => {
+const CartTable = ({cartItems, bookInTotal, onIncrease, onDecrease, onDelete}) => {
     const renderElement = (item, idx) => {
             const {
-                bookId,
                 bookName,
                 bookCount,
                 bookPrice,
                 bookTotal,
-                bookInTotal,
             } = item;
+            idx += 1
             return (
-                <tr key={bookId}>
-                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookId}</h5></th>
+                <tr key={idx}>
+                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{idx}</h5></th>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookName}</h5></th>
-                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookPrice}</h5></th>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookCount}</h5></th>
-                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookInTotal}</h5></th>
+                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookPrice}</h5></th>
+                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{`${bookCount*bookPrice}`}</h5></th>
                     <th className='d-flex justify-content-center'>
-                        <i className="mx-2 fas fa-plus" onClick={() => onIncrease(bookId)}/>
-                        <i className="mx-2 fas fa-minus" onClick={() => onDecrease(bookId)}/>
-                        <i className="mx-2 fas fa-trash" onClick={() => onDelete(bookId)}/>
+                        <i className="mx-2 fas fa-plus" onClick={() => onIncrease(idx)}/>
+                        <i className="mx-2 fas fa-minus" onClick={() => onDecrease(idx)}/>
+                        <i className="mx-2 fas fa-trash" onClick={() => onDelete(idx)}/>
                     </th>
                 </tr>
             )
@@ -39,11 +39,31 @@ const CartTable = ({items, bookInTotal, onIncrease, onDecrease, onDelete}) => {
                     <th><h1 style={{color: '#000', textAlign: 'center'}}>In Total</h1></th>
                     <th><h1 style={{color: '#000', textAlign: 'center'}}>Actions</h1></th>
                 </tr>
-                {items.map(renderElement)}
+                {cartItems.map(renderElement)}
                 </thead>
             </table>
         </Fragment>
     )
 }
 
-export default CartTable;
+const mapStateToProps = ({cartItems, bookInTotal}) => {
+    return{
+        cartItems, bookInTotal
+    };
+}
+
+const mapDispatchToProps = () => {
+    return{
+        onIncrease: (id) => {
+            console.log(`Increate ${id}`)
+        },
+        onDecrease: (id) => {
+            console.log(`Decrease ${id}`)
+        },
+        onDelete: (id) => {
+            console.log(`Delete ${id}`)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartTable);

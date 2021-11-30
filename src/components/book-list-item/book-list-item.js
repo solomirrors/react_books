@@ -4,7 +4,7 @@ import {Button, Card, CardGroup, CardImg, Col, Container, Image, Row} from "reac
 import CardHeader from "react-bootstrap/CardHeader";
 import {Link} from "react-router-dom";
 
-const BookListItem = ({book}) => {
+const BookListItem = ({book, onAddedToCart}) => {
     const {title, author, price, book_Src} = book;
     return(
             <Card className='h-100'>
@@ -19,7 +19,13 @@ const BookListItem = ({book}) => {
                 </CardHeader>
                 <Row className='p-2 d-flex align-items-end'>
                     <Col className='col-auto d-flex justify-content-center align-items-center'>
-                        <Button className='align-items-start btn btn-secondary'>Add to cart<i className="mx-1 fas fa-cart-plus"/></Button>
+                        <Button
+                            onClick={onAddedToCart}
+                            className='align-items-start btn btn-secondary'
+                        >
+                            <span>Add to cart</span>
+                            <i className="mx-1 fas fa-cart-plus"/>
+                        </Button>
                     </Col>
                     <Col className='col-auto d-flex justify-content-center align-items-center'>
                         <h6 className=''>{price}<i className="mx-1 fas fa-dollar-sign"/></h6>

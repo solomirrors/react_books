@@ -2,33 +2,12 @@ const initialState = {
     books: [],
     loading: true,
     error: null,
-    cartItems: [
-        {
-            bookId: 1,
-            bookName: 'Books 1',
-            bookPrice: 25,
-            bookCount: 2,
-            bookTotal: 50,
-        },
-        {
-            bookId: 2,
-            bookName: 'Books 2',
-            bookPrice: 20,
-            bookCount: 4,
-            bookTotal: 40,
-        },
-        {
-            bookId: 1,
-            bookName: 'Books 3',
-            bookPrice: 15,
-            bookCount: 1,
-            bookTotal: 30,
-        }
-    ],
+    cartItems: [],
     bookInTotal: 150
 };
 
 const reducers = (state = initialState, {payload, type}) => {
+    console.log(type)
     switch (type) {
         case 'FETCH_BOOKS_REQUEST':
             return {
@@ -51,15 +30,25 @@ const reducers = (state = initialState, {payload, type}) => {
                 loading: false,
                 error: payload
             }
+        case 'ADDED_BOOK_TO_CART':
+            const bookId = payload;
+            const book = state.books.find((book) => book.id === bookId)
+            const newItem = {
+                id: book.id,
+                bookName: book.title,
+                bookPrice: book.price,
+                bookCount: 1,
+            }
+            return {
+                ...state,
+                cartItems: [
+                    ...state.cartItems,
+                    newItem
+                ]
+            }
         default:
             return state;
     }
-}
-
-const mapStateToProps = (state) => {
-    return{
-
-    };
 }
 
 export default reducers;
