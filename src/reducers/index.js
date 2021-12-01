@@ -6,6 +6,37 @@ const initialState = {
     bookInTotal: 150
 };
 
+const updateCartItems = (cartItems, item, idx) => {
+    if (idx === -1){
+        return [
+            ...cartItems,
+            item
+        ]
+    }
+
+    return [
+        ...cartItems.slice(0, idx),
+        item,
+        ...cartItems.slice(idx+1)
+    ]
+}
+
+const updateCartItem = (book, item = {}) => {
+    const {
+        id = book.id,
+        bookTitle = book.title,
+        bookPrice = book.price,
+        bookCount = 0
+    } = item;
+
+    return {
+        id,
+        bookTitle,
+        bookPrice,
+        bookCount: bookCount + 1
+    }
+}
+
 const reducers = (state = initialState, {payload, type}) => {
     console.log(type)
     switch (type) {
@@ -33,18 +64,13 @@ const reducers = (state = initialState, {payload, type}) => {
         case 'ADDED_BOOK_TO_CART':
             const bookId = payload;
             const book = state.books.find((book) => book.id === bookId)
-            const newItem = {
-                id: book.id,
-                bookName: book.title,
-                bookPrice: book.price,
-                bookCount: 1,
-            }
+            const itemIndex = state.cartItems.findIndex(({id}) => id === bookId)
+            const item = state.cartItems[itemIndex];
+
+            const newItem = updateCartItem(book, item);
             return {
                 ...state,
-                cartItems: [
-                    ...state.cartItems,
-                    newItem
-                ]
+                cartItems: updateCartItems(state.cartItems, newItem, itemIndex)
             }
         default:
             return state;

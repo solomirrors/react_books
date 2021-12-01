@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 const CartTable = ({cartItems, bookInTotal, onIncrease, onDecrease, onDelete}) => {
     const renderElement = (item, idx) => {
             const {
-                bookName,
+                bookTitle,
                 bookCount,
                 bookPrice,
                 bookTotal,
@@ -13,7 +13,7 @@ const CartTable = ({cartItems, bookInTotal, onIncrease, onDecrease, onDelete}) =
             return (
                 <tr key={idx}>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{idx}</h5></th>
-                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookName}</h5></th>
+                    <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookTitle}</h5></th>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookCount}</h5></th>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookPrice}</h5></th>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{`${bookCount*bookPrice}`}</h5></th>
