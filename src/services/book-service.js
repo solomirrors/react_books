@@ -89,11 +89,11 @@ export default class BookService {
     getBooks() {
         return new Promise((resolve, reject) => {
            setTimeout(() => {
-               if (Math.random() > 0.75)
+               if (Math.random() > 0.95)
                    reject(new Error('Something bad'))
                else
                    resolve(this.data)
-               }, 1000);
+               }, 50);
         });
     }
 }

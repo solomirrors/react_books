@@ -4,7 +4,7 @@ import {Button, Card, CardGroup, CardImg, Col, Container, Image, Row} from "reac
 import CardHeader from "react-bootstrap/CardHeader";
 import {Link} from "react-router-dom";
 
-const BookListItem = ({book, onAddedToCart}) => {
+const BookListItem = ({book, setBookFromCart}) => {
     const {title, author, price, book_Src} = book;
     return(
             <Card className='h-100'>
@@ -20,7 +20,7 @@ const BookListItem = ({book, onAddedToCart}) => {
                 <Row className='p-2 d-flex align-items-end'>
                     <Col className='col-auto d-flex justify-content-center align-items-center'>
                         <Button
-                            onClick={onAddedToCart}
+                            onClick={setBookFromCart}
                             className='align-items-start btn btn-secondary'
                         >
                             <span>Add to cart</span>

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import Spinner from "../../components/spinner";
 import ErrorIndicator from "../../components/errors/error-indicator";
-import {bookAddedToCart, fetchBooks} from "../../actions";
+import {setBookFromCart, fetchBooks} from "../../actions";
 import {compose} from "redux";
 import withContextBook from "../../components/hoc";
 import {connect} from "react-redux";
@@ -13,7 +13,7 @@ class BookListContainer extends Component{
     }
 
     render() {
-        const {books, loading, error, onAddedToCart} = this.props;
+        const {books, loading, error, setBookFromCart} = this.props;
 
         if (loading) {
             return <Spinner/>
@@ -23,7 +23,7 @@ class BookListContainer extends Component{
             return <ErrorIndicator/>
         }
 
-        return <BookList books={books} onAddedToCart={onAddedToCart}/>
+        return <BookList books={books} setBookFromCart={setBookFromCart}/>
     }
 }
 
@@ -34,7 +34,7 @@ const mapStateToProps = ({books, loading, error}) => {
 const mapDispatchToProps = (dispatch, {bookService}) => {
     return {
         fetchBooks: fetchBooks(bookService, dispatch),
-        onAddedToCart: (id) => dispatch(bookAddedToCart(id))
+        setBookFromCart: (id) => dispatch(setBookFromCart(id))
     }
 }
 

@@ -18,12 +18,35 @@ const booksError = (error) => {
     }
 }
 
-const bookAddedToCart = (bookId) => {
+const setBookFromCart = (bookId) => {
     return{
-        type: 'ADDED_BOOK_TO_CART',
+        type: 'SET_BOOK_FROM_CART',
         payload: bookId
     }
 }
+
+const updateBookFromCart = (bookId) => {
+    return{
+        type: 'UPDATE_BOOK_FROM_CART',
+        payload: bookId
+    }
+}
+
+const deleteBookFromCart = (bookId) => {
+    return{
+        type: 'DELETE_BOOK_FROM_CART',
+        payload: bookId
+    }
+}
+
+const removeBookFromCart = (bookId) => {
+    return{
+        type: 'REMOVE_BOOK_FROM_CART',
+        payload: bookId
+    }
+}
+
+
 
 const fetchBooks = (bookService, dispatch) => () => {
     dispatch(booksRequested());
@@ -33,5 +56,5 @@ const fetchBooks = (bookService, dispatch) => () => {
 }
 
 export {
-    fetchBooks, bookAddedToCart
+    fetchBooks, setBookFromCart, updateBookFromCart, deleteBookFromCart, removeBookFromCart
 }

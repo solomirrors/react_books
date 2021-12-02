@@ -1,15 +1,19 @@
 import React, {Fragment} from "react";
 import {connect} from "react-redux";
+import {Button} from "react-bootstrap";
+import {
+    updateBookFromCart,
+    deleteBookFromCart,
+    removeBookFromCart
+} from "../../../../actions";
 
-const CartTable = ({cartItems, bookInTotal, onIncrease, onDecrease, onDelete}) => {
+const CartTable = ({cartItems, onIncrease, onDecrease, onDelete}) => {
     const renderElement = (item, idx) => {
             const {
                 bookTitle,
                 bookCount,
                 bookPrice,
-                bookTotal,
             } = item;
-            idx += 1
             return (
                 <tr key={idx}>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{idx}</h5></th>
@@ -18,9 +22,15 @@ const CartTable = ({cartItems, bookInTotal, onIncrease, onDecrease, onDelete}) =
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{bookPrice}</h5></th>
                     <th><h5 style={{color: '#000', textAlign: 'center'}}>{`${bookCount*bookPrice}`}</h5></th>
                     <th className='d-flex justify-content-center'>
-                        <i className="mx-2 fas fa-plus" onClick={() => onIncrease(idx)}/>
-                        <i className="mx-2 fas fa-minus" onClick={() => onDecrease(idx)}/>
-                        <i className="mx-2 fas fa-trash" onClick={() => onDelete(idx)}/>
+                        <Button className='mx-2 btn btn-lg' onClick={() => onIncrease(idx)}>
+                            <i className="mx-2 fas fa-plus"/>
+                        </Button>
+                        <Button className='mx-2 btn btn-lg' onClick={() => onDecrease(idx)}>
+                            <i className="mx-2 fas fa-minus" />
+                        </Button>
+                        <Button className='mx-2 btn btn-lg' onClick={() => onDelete(idx)}>
+                            <i className="mx-2 fas fa-trash"/>
+                        </Button>
                     </th>
                 </tr>
             )
@@ -52,18 +62,10 @@ const mapStateToProps = ({cartItems, bookInTotal}) => {
     };
 }
 
-const mapDispatchToProps = () => {
-    return{
-        onIncrease: (id) => {
-            console.log(`Increate ${id}`)
-        },
-        onDecrease: (id) => {
-            console.log(`Decrease ${id}`)
-        },
-        onDelete: (id) => {
-            console.log(`Delete ${id}`)
-        }
-    }
+const mapDispatchToProps = {
+    onIncrease:  updateBookFromCart,
+    onDecrease: deleteBookFromCart,
+    onDelete: removeBookFromCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartTable);
