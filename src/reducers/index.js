@@ -56,15 +56,18 @@ const removeBookFromCart = (cartItems, index) => {
 }
 
 const updateOrder = (state, payload, action) => {
+    const {cartItems} = state;
     const checkBooks = checkOrderBooks(state.books, payload);
     const checkCarts = checkCartsBooks(state.cartItems, payload);
 
     switch (action){
         case 'SET_BOOK':
             if (checkCarts !== -1 ){
-                return state
+                return {
+                    ...state, cartItems: updateBookFromCart(cartItems, checkCarts)
+                }
             }
-            return {
+            else return {
                 ...state, cartItems: setBookFromCart(state.cartItems, checkBooks)
             };
         case 'UPDATE_BOOK':
