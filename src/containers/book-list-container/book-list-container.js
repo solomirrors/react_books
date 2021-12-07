@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Spinner from "../../components/spinner";
 import ErrorIndicator from "../../components/errors/error-indicator";
 import {createBookFromCart, fetchBooks} from "../../actions";
-import {compose} from "redux";
+import {compose, bindActionCreators} from "redux";
 import withContextBook from "../../components/hoc";
 import {connect} from "react-redux";
 import BookList from "../../components/book-list";
@@ -37,10 +37,10 @@ const mapStateToProps = ({bookList: {books, loading, error}}) => {
 };
 
 const mapDispatchToProps = (dispatch, {bookService}) => {
-    return {
-        fetchBooks: fetchBooks(bookService, dispatch),
-        createBookFromCart: (id) => dispatch(createBookFromCart(id))
-    }
+    return bindActionCreators({
+        fetchBooks: fetchBooks(bookService),
+        createBookFromCart: createBookFromCart
+    }, dispatch);
 }
 
 export default compose(
