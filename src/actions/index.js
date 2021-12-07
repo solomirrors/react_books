@@ -18,9 +18,9 @@ const booksError = (error) => {
     }
 }
 
-const setBookFromCart = (bookId) => {
+const createBookFromCart = (bookId) => {
     return{
-        type: 'SET_BOOK_FROM_CART',
+        type: 'CREATE_BOOK_FROM_CART',
         payload: bookId
     }
 }
@@ -56,5 +56,5 @@ const fetchBooks = (bookService, dispatch) => () => {
 }
 
 export {
-    fetchBooks, setBookFromCart, updateBookFromCart, deleteBookFromCart, removeBookFromCart
+    fetchBooks, createBookFromCart, updateBookFromCart, deleteBookFromCart, removeBookFromCart
 }

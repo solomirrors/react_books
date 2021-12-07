@@ -3,7 +3,7 @@ import BookListItem from "../book-list-item";
 import {Col, Row} from "react-bootstrap";
 import './book-list.css'
 
-const BookList = ({books, setBookFromCart}) => {
+const BookList = ({books, createBookFromCart}) => {
     return(
         <Row className='d-flex justify-content-around'>
             {
@@ -15,7 +15,7 @@ const BookList = ({books, setBookFromCart}) => {
                         >
                             <BookListItem
                                 book={book}
-                                setBookFromCart={() => setBookFromCart(book.id)}
+                                createBookFromCart={() => createBookFromCart(book.id)}
                             />
                         </Col>
                     )
